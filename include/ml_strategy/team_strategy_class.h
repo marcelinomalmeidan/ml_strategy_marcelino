@@ -130,14 +130,16 @@ class TeamStrategy {
                          QuadState *quad_state);
     void UpdateQuadOdom(const std::string &name, 
                         const nav_msgs::Odometry &odom);
-    void EnemyDangerUpdate();
-    void GetDangerousEnemies(std::vector<std::string> *names,
-	                         std::vector<std::set<EnemyData>::iterator> *iterators);
     void FindQuadIndex(const std::string &name,
     	               std::set<QuadData>::iterator *index);  // Returns -1 if it can't find
 	void FindEnemyIndex(const std::string &name,
                 		std::set<EnemyData>::iterator *index);
     void PublishReferences();
+
+    // Functions to update enemy danger
+    void EnemyDangerUpdate();
+    void GetDangerousEnemies(std::vector<std::string> *names,
+                             std::vector<std::set<EnemyData>::iterator> *iterators);
 
     // Rules to update defensive and offensive state machines
     void UpdateAttDefStateMachine();

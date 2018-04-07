@@ -114,6 +114,28 @@ void TeamStrategy::UpdateQuadOdom(const std::string &name,
 	}
 }
 
+void TeamStrategy::FindQuadIndex(const std::string &name,
+               					 std::set<QuadData>::iterator *index){
+	QuadData quad_with_name;
+	quad_with_name.name = name;
+	*index = quads_.find(quad_with_name);
+}
+
+void TeamStrategy::FindEnemyIndex(const std::string &name,
+               					  std::set<EnemyData>::iterator *index){
+	EnemyData quad_with_name;
+	quad_with_name.name = name;
+	*index = enemies_.find(quad_with_name);
+}
+
+void TeamStrategy::PublishReferences() {
+	std::set<QuadData>::iterator it;
+	for(it = quads_.begin(); it != quads_.end(); ++it) {
+		it->pub_reference.publish(it->reference);
+		// ROS_INFO("%s: %f %f %f", it->name.c_str(), it->reference.Pos.x, it->reference.Pos.y, it->reference.Pos.z);
+	}
+}
+
 void TeamStrategy::EnemyDangerUpdate() {
 	const double warning_threshold = 4.0;
 	const double danger_threshold = 3.0;
@@ -161,28 +183,6 @@ void TeamStrategy::GetDangerousEnemies(std::vector<std::string> *names,
 				iterators->push_back(it);
 			}
 		}
-	}
-}
-
-void TeamStrategy::FindQuadIndex(const std::string &name,
-               					 std::set<QuadData>::iterator *index){
-	QuadData quad_with_name;
-	quad_with_name.name = name;
-	*index = quads_.find(quad_with_name);
-}
-
-void TeamStrategy::FindEnemyIndex(const std::string &name,
-               					  std::set<EnemyData>::iterator *index){
-	EnemyData quad_with_name;
-	quad_with_name.name = name;
-	*index = enemies_.find(quad_with_name);
-}
-
-void TeamStrategy::PublishReferences() {
-	std::set<QuadData>::iterator it;
-	for(it = quads_.begin(); it != quads_.end(); ++it) {
-		it->pub_reference.publish(it->reference);
-		// ROS_INFO("%s: %f %f %f", it->name.c_str(), it->reference.Pos.x, it->reference.Pos.y, it->reference.Pos.z);
 	}
 }
 

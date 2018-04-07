@@ -10,10 +10,11 @@
                                "hermione",
                                "ron"] </rosparam>
 
-    <!-- Initial position/yaw of the quads -->
+    <!-- Initial position quads (meters) -->
     <rosparam param="InitialPosition"> [-6.0,  0.0, 2.0,
                                         -6.0, -1.5, 1.1,
                                         -6.0,  1.5, 1.2] </rosparam>
+    <!-- Initial yaw quads (radians) -->
     <rosparam param="InitialYaw"> [0.0,
                                    0.0,
                                    0.0] </rosparam>
