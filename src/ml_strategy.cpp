@@ -22,7 +22,8 @@ int main(int argc, char** argv){
 	ros::init(argc, argv, "ml_strategy");
 	ros::NodeHandle node("~");
   	ROS_INFO("Marcelino's strategy started!");
-
+int i = 0;
+std::cout << i << std::endl;
   	// Get team quads
 	std::vector<std::string> quad_names;
 	std::vector<double> init_pos, init_yaw;
